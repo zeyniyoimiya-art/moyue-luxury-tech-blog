@@ -1,0 +1,5 @@
+# 墨玥 · MoYue — robots
+User-agent: *
+Allow: /
+
+Sitemap: https://moyue.vercel.app/sitemap.xml

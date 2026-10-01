@@ -1,0 +1,16 @@
+{
+  "name": "墨玥 · MoYue — Historia de la tecnología china",
+  "short_name": "墨玥 MoYue",
+  "description": "Donde la tinta encuentra la luna · 墨落月升. Blog de Lin Yue 林玥.",
+  "lang": "es",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0b0d0c",
+  "theme_color": "#0b0d0c",
+  "categories": ["education", "books", "history"],
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icons/maskable.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>墨玥 · MoYue</title>
+    <link>https://moyue.vercel.app/</link>
+    <description>Donde la tinta encuentra la luna · 墨落月升. Historia de la tecnología china por Lin Yue 林玥.</description>
+    <language>es</language>
+    <atom:link href="https://moyue.vercel.app/rss.xml" rel="self" type="application/rss+xml"/>
+    <item><title>Empresas tecnológicas chinas</title><link>https://moyue.vercel.app/#/blog/empresas</link><guid>moyue-empresas</guid><pubDate>Sun, 06 Apr 2025 00:00:00 GMT</pubDate><description>Huawei, Xiaomi, BYD, DJI, Tencent, Alibaba y DeepSeek: siete casas, siete estrategias.</description></item>
+    <item><title>China tecnológica moderna</title><link>https://moyue.vercel.app/#/blog/china-moderna</link><guid>moyue-china-moderna</guid><pubDate>Fri, 21 Mar 2025 00:00:00 GMT</pubDate><description>5G, BeiDou, supercomputadoras, maglev, IA y Chang'e.</description></item>
+    <item><title>De la Ruta de la Seda a la Ruta Digital</title><link>https://moyue.vercel.app/#/blog/ruta-seda-digital</link><guid>moyue-ruta-seda</guid><pubDate>Sun, 02 Mar 2025 00:00:00 GMT</pubDate><description>Caravanas y cables submarinos, oasis y centros de datos.</description></item>
+    <item><title>Personajes clave</title><link>https://moyue.vercel.app/#/blog/personajes</link><guid>moyue-personajes</guid><pubDate>Sun, 09 Feb 2025 00:00:00 GMT</pubDate><description>De Cai Lun a Liang Wenfeng: diez mentes que unen dos mil años de ingenio.</description></item>
+    <item><title>Los Cuatro Grandes Inventos</title><link>https://moyue.vercel.app/#/blog/cuatro-inventos</link><guid>moyue-inventos</guid><pubDate>Sat, 18 Jan 2025 00:00:00 GMT</pubDate><description>Papel, imprenta, brújula y pólvora.</description></item>
+  </channel>
+</rss>
