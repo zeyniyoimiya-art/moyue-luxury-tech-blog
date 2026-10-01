@@ -1,0 +1,443 @@
+@import "tailwindcss";
+
+/* ==========================================================
+   墨玥 · MoYue — Sistema de diseño
+   Paleta: tinta, papel de arroz, jade, oro antiguo, laca roja
+   ========================================================== */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-ink: #0b0d0c;
+  --color-ink-2: #121614;
+  --color-ink-3: #1a201d;
+  --color-paper: #f2ede3;
+  --color-paper-2: #e8e1d2;
+  --color-jade: #00a86b;
+  --color-jade-soft: #7fb8a4;
+  --color-gold: #c9a227;
+  --color-seal: #a6192e;
+  --color-smoke: #8a8f8c;
+
+  --font-display: "Cormorant Garamond", "Noto Serif SC", serif;
+  --font-body: "EB Garamond", "Noto Serif SC", Georgia, serif;
+  --font-cn: "Noto Serif SC", serif;
+  --font-brush: "Ma Shan Zheng", "Noto Serif SC", cursive;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Variables semánticas — cambian con el tema */
+:root {
+  --bg: #f2ede3;
+  --bg-2: #e9e2d3;
+  --fg: #1b1f1d;
+  --fg-soft: #4a504d;
+  --line: rgba(0, 120, 78, 0.35);
+  --card: rgba(255, 252, 245, 0.72);
+  --ink-wash: rgba(11, 13, 12, 0.06);
+  color-scheme: light;
+}
+.dark {
+  --bg: #0b0d0c;
+  --bg-2: #111513;
+  --fg: #ece6da;
+  --fg-soft: #a9aea9;
+  --line: rgba(0, 168, 107, 0.32);
+  --card: rgba(18, 22, 20, 0.78);
+  --ink-wash: rgba(127, 184, 164, 0.05);
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 1.125rem;
+  line-height: 1.75;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Textura de papel de arroz: ruido SVG sutil */
+.rice-paper::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0 0.4 0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+:root:not(.dark) .rice-paper::before {
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+}
+
+/* Patrón de nubes 祥云 / olas seigaiha (fallback CSS de la idea Houdini) */
+.seigaiha {
+  background-image: radial-gradient(circle at 50% 100%, transparent 38%, var(--line) 39%, transparent 41%, transparent 58%, var(--line) 59%, transparent 61%, transparent 78%, var(--line) 79%, transparent 81%);
+  background-size: 64px 32px;
+  opacity: 0.18;
+}
+
+/* Foco visible jade (accesibilidad) */
+:focus-visible {
+  outline: 2px solid var(--color-jade);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background: rgba(0, 168, 107, 0.35);
+  color: inherit;
+}
+
+/* Texto vertical chino 竖排 */
+.vertical {
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.35em;
+}
+.vertical-mixed {
+  writing-mode: vertical-rl;
+  letter-spacing: 0.15em;
+}
+
+/* Borde de jade luminoso */
+.jade-border {
+  border: 1px solid var(--line);
+  box-shadow: inset 0 0 0 1px rgba(201, 162, 39, 0.06);
+}
+.jade-glow {
+  position: relative;
+  isolation: isolate;
+}
+.jade-glow::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--angle, 0deg), transparent 0 60%, #00a86b 75%, #c9a227 82%, transparent 95%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: jade-spin 4.5s linear infinite;
+  z-index: -1;
+}
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes jade-spin {
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Sello rojo lacado */
+.seal {
+  background: radial-gradient(circle at 30% 25%, #c22a40 0%, #a6192e 55%, #7d0f20 100%);
+  color: #f6e9e0;
+  font-family: var(--font-brush);
+  box-shadow: inset 0 0 0 2px rgba(246, 233, 224, 0.75), inset 0 0 0 4px #a6192e, 0 6px 18px -6px rgba(166, 25, 46, 0.6);
+  filter: url(#seal-rough);
+}
+
+/* Contenedores con container queries */
+.cq {
+  container-type: inline-size;
+}
+
+/* Prosa del pergamino */
+.scroll-prose p {
+  margin: 0 0 1.35em;
+  color: var(--fg);
+  hyphens: auto;
+}
+.scroll-prose h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.2vw, 2.6rem);
+  line-height: 1.15;
+  margin: 2.4em 0 0.6em;
+  letter-spacing: 0.01em;
+}
+.scroll-prose h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.4rem, 2.2vw, 1.75rem);
+  margin: 1.8em 0 0.5em;
+  color: var(--color-jade-soft);
+}
+:root:not(.dark) .scroll-prose h3 {
+  color: #00754b;
+}
+.scroll-prose strong {
+  color: var(--color-gold);
+  font-weight: 600;
+}
+:root:not(.dark) .scroll-prose strong {
+  color: #7a5f0c;
+}
+
+/* Capitular con carácter chino */
+.dropcap-cn {
+  float: left;
+  font-family: var(--font-brush);
+  font-size: 4.6rem;
+  line-height: 0.9;
+  margin: 0.1em 0.18em 0 0;
+  color: var(--color-jade);
+  text-shadow: 0 0 22px rgba(0, 168, 107, 0.35);
+}
+
+/* Galería tipo pergamino horizontal */
+.scroll-gallery {
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-jade) transparent;
+}
+.scroll-gallery > * {
+  scroll-snap-align: center;
+}
+
+/* Tarjetas que se "desenrollan" */
+.unroll {
+  clip-path: inset(0 0 0 0 round 14px);
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.7s;
+}
+.unroll .unroll-ink {
+  transform: scale(0.2);
+  opacity: 0;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.9s;
+}
+.unroll:hover .unroll-ink {
+  transform: scale(1);
+  opacity: 1;
+}
+.unroll .unroll-rod {
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.unroll:hover .unroll-rod-top {
+  transform: translateY(-4px);
+}
+.unroll:hover .unroll-rod-bottom {
+  transform: translateY(4px);
+}
+.unroll:hover {
+  transform: translateY(-6px) scaleY(1.015);
+  box-shadow: 0 30px 60px -30px rgba(0, 168, 107, 0.45);
+}
+
+/* Imágenes con filtro sutil de tinta/sepia */
+.ink-img {
+  filter: sepia(0.25) saturate(0.75) contrast(1.05) brightness(0.92);
+  transition: filter 0.8s ease, transform 1.2s ease;
+}
+.group:hover .ink-img {
+  filter: sepia(0.05) saturate(0.95) contrast(1.05);
+}
+
+/* Revelado tipo trazo de pincel */
+.brush-reveal {
+  clip-path: inset(0 100% 0 0);
+  animation: brush 1.4s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+@keyframes brush {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+.stroke-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.25em) scale(1.08);
+  filter: blur(8px);
+}
+
+/* Nubes 祥云 animadas */
+@keyframes cloud-drift {
+  0% {
+    transform: translateX(-6%);
+  }
+  50% {
+    transform: translateX(6%);
+  }
+  100% {
+    transform: translateX(-6%);
+  }
+}
+.cloud-drift {
+  animation: cloud-drift 14s ease-in-out infinite;
+}
+
+/* Sello estampado */
+@keyframes stamp {
+  0% {
+    transform: scale(3.2) rotate(-14deg);
+    opacity: 0;
+  }
+  55% {
+    transform: scale(0.92) rotate(-6deg);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(1.04) rotate(-7deg);
+  }
+  100% {
+    transform: scale(1) rotate(-7deg);
+    opacity: 1;
+  }
+}
+.stamp-in {
+  animation: stamp 0.65s cubic-bezier(0.2, 0.9, 0.3, 1.2) forwards;
+}
+
+/* Transición ink-wipe */
+@keyframes ink-in {
+  from {
+    clip-path: circle(0% at var(--wx, 50%) var(--wy, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--wx, 50%) var(--wy, 50%));
+  }
+}
+@keyframes ink-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+/* Luciérnagas del jardín */
+@keyframes firefly {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--fx, 20px), var(--fy, -20px));
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.2;
+  }
+}
+@keyframes bloom {
+  0% {
+    transform: scale(0.2) rotate(-30deg);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+@keyframes sway {
+  0%,
+  100% {
+    transform: rotate(-2deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+.sway {
+  transform-origin: 50% 100%;
+  animation: sway 5s ease-in-out infinite;
+}
+
+/* Flotación de 玥 */
+@keyframes float-char {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.5;
+  }
+  85% {
+    opacity: 0.35;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(25deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Cursor de pincel: ocultar cursor nativo sólo en punteros finos */
+@media (pointer: fine) {
+  .brush-cursor-on,
+  .brush-cursor-on * {
+    cursor: none !important;
+  }
+}
+
+/* Barra de desplazamiento */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--color-jade), #00754b);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+
+/* Movimiento reducido: todo estático, sin tinta ni partículas */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .stroke-char {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .brush-reveal {
+    clip-path: none !important;
+  }
+}
+.reduced .stroke-char {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}

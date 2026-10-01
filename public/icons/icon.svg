@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="80" fill="#0b0d0c"/>
+  <circle cx="330" cy="190" r="110" fill="#00a86b" opacity=".9"/>
+  <rect x="96" y="250" width="200" height="200" rx="18" fill="#a6192e"/>
+  <rect x="110" y="264" width="172" height="172" rx="10" fill="none" stroke="#f2ede3" stroke-width="6"/>
+  <text x="196" y="400" font-size="150" text-anchor="middle" fill="#f2ede3" font-family="Ma Shan Zheng, Noto Serif SC, serif">玥</text>
+</svg>
